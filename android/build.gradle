@@ -69,15 +69,3 @@ android {
     }
 }
 
-gradle.projectsEvaluated {
-    def hostAppLibs = rootProject.projectDir.toPath().resolve("../android/app/libs").toFile()
-    if (!hostAppLibs.exists()) hostAppLibs.mkdirs()
-
-    def aarFile = file("libs/faceidlibrary.aar")
-    if (aarFile.exists()) {
-        copy {
-            from aarFile
-            into hostAppLibs
-        }
-    }
-}
