@@ -8,7 +8,7 @@ buildscript {
         mavenLocal()
         google()
         mavenCentral()
-        
+        // mavenLocal()
     }
 
     dependencies {
@@ -19,9 +19,10 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenLocal()
         google()
         mavenCentral()
-        mavenLocal()
+        // mavenLocal()
         /* flatDir {
             dirs 'libs'
         } */
