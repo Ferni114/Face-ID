@@ -1,11 +1,13 @@
-group = "com.example.faceid"
-version = "1.0.0"
+/* group = "com.example.faceid"
+artifactId = "faceidlibrary"
+version = "1.0.0" */
 
 buildscript {
     ext.kotlin_version = "1.8.22"
     repositories {
         google()
         mavenCentral()
+        mavenLocal()
     }
 
     dependencies {
