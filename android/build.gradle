@@ -20,6 +20,13 @@ buildscript {
 allprojects {
     repositories {
         // mavenLocal()
+        maven {
+            url = uri("https://maven.pkg.github.com/Ferni114/Face-ID")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
+                password = project.findProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
         google()
         mavenCentral()
         // mavenLocal()
@@ -52,7 +59,7 @@ android {
     }
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
     }
 
     /* dependencies {
@@ -75,7 +82,7 @@ android {
     }
 }
 
-repositories {
+/* repositories {
     maven {
         url = uri("https://maven.pkg.github.com/Ferni114/Face-ID")
         credentials {
@@ -85,7 +92,7 @@ repositories {
     }
     google()
     mavenCentral()
-}
+} */
 
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
