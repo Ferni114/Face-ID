@@ -65,10 +65,10 @@ class _Register extends State<Register> {
 
       img.Image croppedImage = img.copyCrop(
         decodedImage,
-        cropX,
-        cropY,
-        cropWidth,
-        cropHeight,
+        x: cropX,
+        y: cropY,
+        width: cropWidth,
+        height: cropHeight,
       );
 
       final Uint8List bytes = Uint8List.fromList(img.encodeJpg(croppedImage));
@@ -340,10 +340,10 @@ class _Validate extends State<Validate> {
 
       img.Image croppedImage = img.copyCrop(
         decodedImage,
-        cropX,
-        cropY,
-        cropWidth,
-        cropHeight,
+        x: cropX,
+        y: cropY,
+        width: cropWidth,
+        height: cropHeight,
       );
 
       final Uint8List bytes = Uint8List.fromList(img.encodeJpg(croppedImage));
