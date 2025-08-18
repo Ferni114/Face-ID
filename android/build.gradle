@@ -5,7 +5,7 @@ version = "1.0.0" */
 buildscript {
     ext.kotlin_version = "1.8.22"
     repositories {
-        mavenLocal()
+        // mavenLocal()
         google()
         mavenCentral()
         // mavenLocal()
@@ -19,7 +19,7 @@ buildscript {
 
 allprojects {
     repositories {
-        mavenLocal()
+        // mavenLocal()
         google()
         mavenCentral()
         // mavenLocal()
@@ -73,6 +73,18 @@ android {
             }
         }
     }
+}
+
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/Ferni114/Face-ID")
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
+            password = project.findProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN")
+        }
+    }
+    google()
+    mavenCentral()
 }
 
 dependencies {
