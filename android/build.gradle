@@ -82,7 +82,7 @@ android {
     }
 }
 
-/* repositories {
+repositories {
     maven {
         url = uri("https://maven.pkg.github.com/Ferni114/Face-ID")
         credentials {
@@ -92,7 +92,7 @@ android {
     }
     google()
     mavenCentral()
-} */
+} 
 
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
