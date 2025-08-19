@@ -46,6 +46,7 @@ class FaceidPlugin : FlutterPlugin, MethodCallHandler {
 
         // Inicializas tu librería con el contexto
         faceIdLib = FaceIDLibrary(binding.applicationContext)
+        faceIdLib.init()
     }
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
