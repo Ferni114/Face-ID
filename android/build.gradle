@@ -98,6 +98,12 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.mockito:mockito-core:5.0.0")
     // implementation(name: 'faceidlibrary', ext: 'aar')
+    api("org.opencv:opencv:4.12.0") {
+        transitive = true
+    }
+    api("org.tensorflow:tensorflow-lite:2.13.0") {
+        transitive = true
+    }
     implementation("com.example.faceid:faceidlibrary:1.0.4")
 }
 
