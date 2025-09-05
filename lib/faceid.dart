@@ -4,7 +4,7 @@ import 'package:image/image.dart' as img;
 import 'package:flutter/services.dart';
 
 class FIDRegister extends StatefulWidget {
-  late void Function(dynamic)? receiver;
+  late void Function(List<double>, FIDErrors)? receiver;
 
   FIDRegister({this.receiver});
 
@@ -73,7 +73,7 @@ class _FIDRegister extends State<FIDRegister> {
 
       final Uint8List bytes = Uint8List.fromList(img.encodeJpg(croppedImage));
       final result = await FaceMethodChannel.getInstance().setImage(bytes);
-      widget.receiver!(result);
+      widget.receiver!((result["vectors"] as List).cast<double>(), FIDErrors.getError((result["error"] as int)));
     } catch (e) {}
   }
 
@@ -258,7 +258,7 @@ class FaceMethodChannel {
 
   dynamic setImage(Uint8List image) async {
     try {
-      return await _platform.invokeMethod<dynamic>("getVectors", {
+      return await _platform.invokeMethod<Map<String, dynamic>>("getVectors", {
         "image": image,
       });
     } on PlatformException catch (e) {
@@ -279,7 +279,7 @@ class FaceMethodChannel {
 }
 
 class FIDValidate extends StatefulWidget {
-  late void Function(dynamic)? receiver;
+  late void Function(List<double>, FIDErrors)? receiver;
 
   FIDValidate({this.receiver});
 
@@ -348,7 +348,7 @@ class _FIDValidate extends State<FIDValidate> {
 
       final Uint8List bytes = Uint8List.fromList(img.encodeJpg(croppedImage));
       final result = await FaceMethodChannel.getInstance().setImage(bytes);
-      widget.receiver!(result);
+      widget.receiver!((result["vectors"] as List).cast<double>(), FIDErrors.getError((result["error"] as int)));
     } catch (e) {}
   }
 
@@ -457,5 +457,21 @@ class _FIDValidate extends State<FIDValidate> {
   void dispose() {
     _controller?.dispose();
     super.dispose();
+  }
+}
+
+enum FIDErrors {
+  none(0),
+  faceNotDetected(1),
+  faceNotRecognized(2);
+
+  final int code;
+  const FIDErrors(this.code);
+
+  static FIDErrors getError(int code) {
+    return FIDErrors.values.firstWhere(
+      (e) => e.code == code,
+      orElse: () => FIDErrors.none,
+    );
   }
 }

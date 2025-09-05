@@ -57,9 +57,13 @@ class FaceidPlugin : FlutterPlugin, MethodCallHandler {
                     result.error("INVALID_ARGUMENT", "Image data is null", null)
                     return
                 }
-                val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
-                val response = faceIdLib.getVectors(bitmap)
-                result.success(response)
+                try {
+                  val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+                  val response = faceIdLib.getVectors(bitmap)
+                  result.success(mapOf("vectors" to response, "error" to 0))
+                }catch (e: Exception) {
+                  result.success(mapOf("vectors" to emptyList<Double>(), "error" to 1))
+                }  
             }
             else -> result.notImplemented()
         }
