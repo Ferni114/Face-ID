@@ -3,16 +3,16 @@ import 'package:camera/camera.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/services.dart';
 
-class Register extends StatefulWidget {
+class FIDRegister extends StatefulWidget {
   late void Function(dynamic)? receiver;
 
-  Register({this.receiver});
+  FIDRegister({this.receiver});
 
   @override
-  _Register createState() => _Register();
+  _FIDRegister createState() => _FIDRegister();
 }
 
-class _Register extends State<Register> {
+class _FIDRegister extends State<FIDRegister> {
   List<CameraDescription> cameras = [];
   CameraController? _controller;
   List<double> vector1 = [];
@@ -58,7 +58,7 @@ class _Register extends State<Register> {
       img.Image flipedImage = img.decodeImage(imageBytes)!;
       img.Image decodedImage = img.flipHorizontal(flipedImage);
 
-      int cropHeight = (decodedImage.height * 0.45).toInt();
+      int cropHeight = (decodedImage.height * 0.5).toInt();
       int cropWidth = (cropHeight / 1.2).toInt();
       int cropX = ((decodedImage.width - cropWidth) / 2).toInt();
       int cropY = 50;
@@ -195,7 +195,7 @@ class SerieMaskPainter extends CustomPainter {
 
     final path = Path()..addRect(Rect.fromLTWH(0, 0, size.width, size.height));
 
-    double boxHeight = size.height * 0.45;
+    double boxHeight = size.height * 0.5;
     double boxWidth = boxHeight / 1.2;
 
     double left = (size.width - boxWidth) / 2;
@@ -278,16 +278,16 @@ class FaceMethodChannel {
   }
 }
 
-class Validate extends StatefulWidget {
+class FIDValidate extends StatefulWidget {
   late void Function(dynamic)? receiver;
 
-  Validate({this.receiver});
+  FIDValidate({this.receiver});
 
   @override
-  _Validate createState() => _Validate();
+  _FIDValidate createState() => _FIDValidate();
 }
 
-class _Validate extends State<Validate> {
+class _FIDValidate extends State<FIDValidate> {
   List<CameraDescription> cameras = [];
   CameraController? _controller;
   List<double> vector1 = [];
@@ -333,7 +333,7 @@ class _Validate extends State<Validate> {
       img.Image flipedImage = img.decodeImage(imageBytes)!;
       img.Image decodedImage = img.flipHorizontal(flipedImage);
 
-      int cropHeight = (decodedImage.height * 0.45).toInt();
+      int cropHeight = (decodedImage.height * 0.5).toInt();
       int cropWidth = (cropHeight / 1.2).toInt();
       int cropX = ((decodedImage.width - cropWidth) / 2).toInt();
       int cropY = 50;
