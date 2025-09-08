@@ -60,7 +60,7 @@ class FaceidPlugin : FlutterPlugin, MethodCallHandler {
                 try {
                   val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
                   val response = faceIdLib.getVectors(bitmap)
-                  result.success(mapOf("vectors" to response, "error" to 0))
+                  result.success(response)
                 }catch (e: Exception) {
                   result.success(mapOf("vectors" to emptyList<Double>(), "error" to 1))
                 }  

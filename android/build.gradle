@@ -104,6 +104,6 @@ dependencies {
     api("org.tensorflow:tensorflow-lite:2.13.0") {
         transitive = true
     }
-    implementation("com.example.faceid:faceidlibrary:1.0.4")
+    implementation("com.example.faceid:faceidlibrary:1.0.5")
 }
 

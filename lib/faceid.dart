@@ -256,13 +256,13 @@ class FaceMethodChannel {
     _receiver = receiver;
   }
 
-  dynamic setImage(Uint8List image) async {
+  Future<Map<dynamic, dynamic>> setImage(Uint8List image) async {
     try {
-      return await _platform.invokeMethod<Map<String, dynamic>>("getVectors", {
+      return await _platform.invokeMethod<Map<dynamic, dynamic>>("getVectors", {
         "image": image,
-      });
+      }) ?? {"vectors": [], "error": 1};
     } on PlatformException catch (e) {
-      return e;
+      return {"vectors": <double>[], "error": 1};
     }
   }
 
