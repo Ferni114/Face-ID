@@ -104,6 +104,9 @@ dependencies {
     api("org.tensorflow:tensorflow-lite:2.13.0") {
         transitive = true
     }
+    api("com.google.mediapipe:tasks-vision:0.10.14") {
+        transitive = true
+    }    
     implementation("com.example.faceid:faceidlibrary:1.0.6")
 }
 
