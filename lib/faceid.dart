@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/services.dart';
+import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
+import 'dart:io';
 
 class FIDRegister extends StatefulWidget {
   late void Function(List<double>, FIDErrors)? receiver;
@@ -53,8 +55,9 @@ class _FIDRegister extends State<FIDRegister> {
   Future<void> _takePicture() async {
     try {
       final XFile image = await _controller!.takePicture();
-      final Uint8List imageBytes = await image.readAsBytes();
-
+      // final Uint8List imageBytes = await image.readAsBytes();
+      final File fixedImage = await FlutterExifRotation.rotateImage(path: image.path);
+      final Uint8List imageBytes = await fixedImage.readAsBytes();
       img.Image flipedImage = img.decodeImage(imageBytes)!;
       img.Image decodedImage = img.flipHorizontal(flipedImage);
 
