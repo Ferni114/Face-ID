@@ -58,8 +58,10 @@ class _FIDRegister extends State<FIDRegister> {
       // final Uint8List imageBytes = await image.readAsBytes();
       final File fixedImage = await FlutterExifRotation.rotateImage(path: image.path);
       final Uint8List imageBytes = await fixedImage.readAsBytes();
-      img.Image flipedImage = img.decodeImage(imageBytes)!;
-      img.Image decodedImage = img.flipHorizontal(flipedImage);
+      img.Image decodedImage = img.decodeImage(imageBytes)!;
+      if (_controller!.description.lensDirection == CameraLensDirection.front) {
+        decodedImage = img.flipHorizontal(decodedImage);
+      }
 
       int cropHeight = (decodedImage.height * 0.5).toInt();
       int cropWidth = (cropHeight / 1.2).toInt();
